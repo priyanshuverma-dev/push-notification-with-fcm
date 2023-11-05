@@ -1,7 +1,7 @@
 {
   "name": "push-notification-with-fcm",
   "version": "1.0.0",
-  "description": "Push Notifications with FCM",
+  "description": "Push Notifications with FCM (TypeScript)",
   "type": "module",
   "main": "dist/main.js",
   "scripts": {
