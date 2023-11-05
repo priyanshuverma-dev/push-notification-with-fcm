@@ -25,14 +25,13 @@ export default async ({ req, res, log, error }: Context) => {
   try {
     const payload = JSON.parse(req.body);
     log(`Sending message to device: ${payload.deviceToken}`);
-    log(`Payload: ${payload}`);
 
     const response = await sendPushNotification({
       notification: {
-        title: req.body.message.title,
-        body: req.body.message.body,
+        title: payload.message.title,
+        body: payload.message.body,
       },
-      token: req.deviceToken,
+      token: payload.deviceToken,
     });
     log(`Successfully sent message: ${response}`);
 
