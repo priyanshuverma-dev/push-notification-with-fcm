@@ -24,7 +24,7 @@ export default async ({ req, res, log, error }: Context) => {
     if (err instanceof Error) res.json({ ok: false, error: err.message }, 400);
   }
   
-  log(`Body Found : ${req.body}`);
+  log(`Token Found : ${req.body.deviceToken}`);
   log(`Sending message to device: ${req.body.deviceToken}`);
 
   try {
