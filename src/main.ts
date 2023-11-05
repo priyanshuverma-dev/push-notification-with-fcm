@@ -1,5 +1,5 @@
 import { sendPushNotification, throwIfMissing } from './utils.js';
-
+import admin from 'firebase-admin';
 type Context = {
   req: any;
   res: any;
@@ -15,6 +15,16 @@ export default async ({ req, res, log, error }: Context) => {
       'FCM_CLIENT_EMAIL',
       'FCM_DATABASE_URL',
     ]);
+
+    admin.initializeApp({
+      credential: admin.credential.cert({
+        projectId: process.env.FCM_PROJECT_ID,
+        clientEmail: process.env.FCM_CLIENT_EMAIL,
+        privateKey: process.env.FCM_PRIVATE_KEY,
+      }),
+      databaseURL: process.env.FCM_DATABASE_URL,
+    });
+
     throwIfMissing(req.body, ['deviceToken', 'message']);
     throwIfMissing(req.body.message, ['title', 'body']);
   } catch (err) {

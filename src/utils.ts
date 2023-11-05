@@ -25,13 +25,5 @@ export function throwIfMissing(obj: any, keys: string[]) {
 export async function sendPushNotification(
   payload: admin.messaging.Message
 ): Promise<string> {
-  admin.initializeApp({
-    credential: admin.credential.cert({
-      projectId: process.env.FCM_PROJECT_ID,
-      clientEmail: process.env.FCM_CLIENT_EMAIL,
-      privateKey: process.env.FCM_PRIVATE_KEY,
-    }),
-    databaseURL: process.env.FCM_DATABASE_URL,
-  });
   return await admin.messaging().send(payload);
 }
