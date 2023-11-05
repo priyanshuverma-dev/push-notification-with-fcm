@@ -14,17 +14,15 @@ export default async ({ req, res, log, error }: Context) => {
     'FCM_CLIENT_EMAIL',
     'FCM_DATABASE_URL',
   ]);
-  
+
   try {
-    
     throwIfMissing(req.body, ['deviceToken', 'message']);
     throwIfMissing(req.body.message, ['title', 'body']);
-    
   } catch (err) {
     if (err instanceof Error) res.json({ ok: false, error: err.message }, 400);
   }
-  
-  log(`Token Found : ${req.body.deviceToken}`);
+
+  log(`Token Found : ${req.body['deviceToken']}`);
   log(`Sending message to device: ${req.body.deviceToken}`);
 
   try {
