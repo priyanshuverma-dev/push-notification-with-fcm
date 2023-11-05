@@ -19,6 +19,7 @@ export default async ({ req, res, log, error }: Context) => {
     throwIfMissing(req.body, ['deviceToken', 'message']);
     throwIfMissing(req.body.message, ['title', 'body']);
   } catch (err) {
+    error(err);
     if (err instanceof Error) res.json({ ok: false, error: err.message }, 400);
   }
 
